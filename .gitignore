@@ -15,3 +15,5 @@ package-lock.json
 /build/daemon*
 /lbrytv/dist/
 /lbrytv/node_modules
+/static/lbry-first/
+/build/lbryFirst*

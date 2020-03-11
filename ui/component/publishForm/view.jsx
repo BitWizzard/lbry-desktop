@@ -53,6 +53,7 @@ type Props = {
   otherLicenseDescription: ?string,
   licenseUrl: ?string,
   uri: ?string,
+  useLBRYUploader: ?boolean,
   publishing: boolean,
   balance: number,
   isStillEditing: boolean,
