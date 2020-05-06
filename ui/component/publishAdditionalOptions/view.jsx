@@ -21,7 +21,7 @@ type Props = {
   needsYTAuth: boolean,
 };
 
-function PublishAdvanced(props: Props) {
+function PublishAdditionalOptions(props: Props) {
   const {
     language,
     name,
@@ -38,15 +38,18 @@ function PublishAdvanced(props: Props) {
     setHideSection(!hideSection);
   }
   function signup() {
+    updatePublishForm({ ytSignupPending: true });
     LbryFirst.ytSignup()
       .then(response => {
         console.log(response);
-        updatePublishForm({ needsYTAuth: false });
+        updatePublishForm({ needsYTAuth: false, ytSignupPending: false });
       })
       .catch(error => {
+        updatePublishForm({ ytSignupPending: false });
         console.log(error);
       });
   }
+
   React.useEffect(() => {
     if (useLBRYUploader) {
       console.log('calling!');
@@ -60,6 +63,7 @@ function PublishAdvanced(props: Props) {
         });
     }
   }, [updatePublishForm, useLBRYUploader]);
+
   return (
     <Card
       actions={
@@ -158,4 +162,4 @@ function PublishAdvanced(props: Props) {
   );
 }
 
-export default PublishAdvanced;
+export default PublishAdditionalOptions;

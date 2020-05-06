@@ -66,6 +66,7 @@ type Props = {
   // Add back type
   updatePublishForm: any => void,
   checkAvailability: string => void,
+  ytSignupPending: boolean,
 };
 
 function PublishForm(props: Props) {
@@ -89,6 +90,7 @@ function PublishForm(props: Props) {
     publish,
     disabled = false,
     checkAvailability,
+    ytSignupPending,
   } = props;
   const TAGS_LIMIT = 5;
   const formDisabled = (!filePath && !editingURI) || publishing;
@@ -204,7 +206,9 @@ function PublishForm(props: Props) {
             button="primary"
             onClick={() => publish(filePath)}
             label={submitLabel}
-            disabled={formDisabled || !formValid || uploadThumbnailStatus === THUMBNAIL_STATUSES.IN_PROGRESS}
+            disabled={
+              formDisabled || !formValid || uploadThumbnailStatus === THUMBNAIL_STATUSES.IN_PROGRESS || ytSignupPending
+            }
           />
           <Button button="link" onClick={clearPublish} label={__('Cancel')} />
         </div>
